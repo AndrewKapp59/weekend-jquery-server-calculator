@@ -36,7 +36,7 @@ Keep a historical record of all math operations and solutions on the server. Dis
 
 - Only allow the POST call to happen if all necessary input is ready.
 
-  *Data integrity is superfluously important! Sometimes users hit tje "go button" without fully inputting the needed fields. Show an alert if they left something empty and don't send bad or incomplete data to the server.*
+  *Data integrity is superfluously important! Sometimes users hit the "go button" without fully inputting the needed fields. Show an alert if they left something empty and don't send bad or incomplete data to the server.*
 
 - Allow a user to clear the history by clicking on a button. Technically this shouldn't be a GET or a POST. Look into making a DELETE request!
 

@@ -12,6 +12,8 @@ function onReady(){
 
 let buttonClicked;
 
+// one of these functions gets run to update the buttonClicked value
+// when the corresponding button is pressed by the user
 function divideClicked () {
   buttonClicked = '/'
   console.log(buttonClicked);
@@ -29,11 +31,10 @@ function addClicked () {
   console.log(buttonClicked);
 }
 
-
 function addEquation() {
   let firstInput = $('#inputOne').val();
-  let operator = buttonClicked;
   let secondInput = $('#inputTwo').val();
+  let operatorInput = buttonClicked;
   $('#inputOne').val('');
   $('#inputTwo').val('');
   //using AJAX to send a post request to the server
@@ -43,8 +44,10 @@ function addEquation() {
     data: {
       equationToAdd: {
         firstNumber: firstInput,
-        operator: operator,
         secondNumber: secondInput,
+        operator: operatorInput,
+        equals: '=',
+        answer: '',
       }
     }
   }).then(function(response){
@@ -55,25 +58,4 @@ function addEquation() {
   })
 }
 
-// function buttonText () {
-//   let buttonPressed = $('.button').on('click').text()
-//   console.log(buttonPressed);
-// }
 
-
-// .button on click text ends up equalling all buttons pressed at once
-
-// function buttonClick(){
-//   if($('#divide').on('click').text() === '/'){
-//     buttonClicked =  '/';
-//   }
-//   else if ($('.button').on('click').text() === '*') {
-//     buttonClicked = '*'; 
-//   }
-//   else if ($('.button').on('click').text() === '-') {
-//     buttonClicked = '-'; 
-//   }
-//   else if ($('.button').on('click').text() === '+') {
-//     buttonClicked = '-'; 
-//   }
-// }
