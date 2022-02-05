@@ -12,7 +12,6 @@ app.use(express.static('server/public'));
 
 let mathHistory = []
 
-
 app.post('/equation', function(req, res){
   // the data that is send from the client is saved for us in req.body
   console.log('req.body from the POST is', req.body);
@@ -45,13 +44,6 @@ app.get('/history', function(req, res){
   res.send(mathHistory);
 });
 
-
-
-//listens for the port and starts our server
-app.listen(PORT, function(){
-  console.log('listening on port', PORT);
-});
-
 function doMath (first, operator, second) {
   if (operator === '/') {
     // console.log('doMath is running');
@@ -70,4 +62,18 @@ function doMath (first, operator, second) {
     let answer = first + second;
     return answer; 
   }
+}
+
+//listens for the port and starts our server
+app.listen(PORT, function(){
+  console.log('listening on port', PORT);
+});
+
+
+function onEmployeeDelete() {
+  console.log($(this).data('id'));
+  let employeeToDeleteIndex = $(this).data('id');
+  employees.splice(employeeToDeleteIndex, 1);
+  renderEmployees();
+  renderTotalMonthlySalary();
 }

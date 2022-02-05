@@ -1,17 +1,50 @@
 $(document).ready(onReady);
 
 function onReady(){
-  // $('.button').on('click', buttonClick)
-  // $('.button').on('click', buttonText)
   $('#divide').on('click', divideClicked)
   $('#multiply').on('click', multiplyClicked)
   $('#subtract').on('click', subtractClicked)
   $('#add').on('click', addClicked)
   $('#equal').on('click', postEquation)
   $('#clear').on('click', clearInputs)
+  $('#one').on('click', addNumberInput)
+  // $('#two').on('click', twoClicked)
+  // $('.button').on('click', updateInput1)
 }
 
 let buttonClicked;
+
+inputArray = [];
+
+// function updateInput1 () {
+//   $('input').val(updateInput)
+// }
+
+// function updateInput() {
+//   for ( let i=0; i<inputArray.length; i++ ) {
+//     return inputArray [i]
+//   }
+// }
+
+function addNumberInput () {
+  let number = $(this).text();
+  $('#input').val($('#input').val() + number)
+}
+
+// function addOperator () {
+//   $(this).text();
+// }
+
+
+// function oneClicked () {
+//   inputArray.push(1)
+//   // console.log(inputArray);
+// }
+
+// function twoClicked () {
+//   inputArray.push(2)
+//   // console.log(inputArray);
+// }
 
 // one of these functions gets run to update the buttonClicked value
 // when the corresponding button is pressed by the user
@@ -35,15 +68,17 @@ function addClicked () {
   console.log(buttonClicked);
 }
 
+
 function clearInputs () {
-  $('#inputOne').val('');
-  $('#inputTwo').val('');
+  $('#input').val('');
+  // $('#inputOne').val('');
+  // $('#inputTwo').val('');
 }
 
 function postEquation() {
   let firstInput = $('#inputOne').val();
   let secondInput = $('#inputTwo').val();
-  let operatorInput = buttonClicked;
+  // let operatorInput = buttonClicked;
   $('#inputOne').val('');
   $('#inputTwo').val('');
   //using AJAX to send a post request to the server
@@ -54,7 +89,7 @@ function postEquation() {
       equationToAdd: {
         firstNumber: firstInput,
         secondNumber: secondInput,
-        operator: operatorInput,
+        operator: buttonClicked,
         equals: '=',
         answer: '',
       }
@@ -90,3 +125,6 @@ function renderToDom(history) {
     `)
   }
 }
+
+
+
