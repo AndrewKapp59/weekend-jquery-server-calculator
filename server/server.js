@@ -40,6 +40,13 @@ app.post('/equation', function(req, res){
   res.sendStatus(201);
 })
 
+// gets the current scoreboard and sends it to the client
+app.get('/history', function(req, res){
+  console.log('request at / was made', req.body);
+  res.send(mathHistory);
+});
+
+
 
 //listens for the port and starts our server
 app.listen(PORT, function(){
