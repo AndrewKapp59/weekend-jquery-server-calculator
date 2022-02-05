@@ -8,6 +8,7 @@ function onReady(){
   $('#subtract').on('click', subtractClicked)
   $('#add').on('click', addClicked)
   $('#equal').on('click', postEquation)
+  $('#clear').on('click', clearInputs)
 }
 
 let buttonClicked;
@@ -32,6 +33,11 @@ function subtractClicked () {
 function addClicked () {
   buttonClicked = '+'
   console.log(buttonClicked);
+}
+
+function clearInputs () {
+  $('#inputOne').val('');
+  $('#inputTwo').val('');
 }
 
 function postEquation() {
