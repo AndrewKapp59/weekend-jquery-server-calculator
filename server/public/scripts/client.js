@@ -86,7 +86,7 @@ function renderToDom(history) {
   $('#mathHistory').empty()
   for (let i of history) {
     $('#mathHistory').append(`
-      <li>${i.firstNumber, i.operator, i.secondNumber, i.equals, i.answer}</li>
+      <li>${i.firstNumber} ${i.operator} ${i.secondNumber} ${i.equals} ${i.answer}</li>
     `)
   }
 }
