@@ -42,7 +42,6 @@ app.post('/equation', function(req, res){
 
 // gets the current scoreboard and sends it to the client
 app.get('/history', function(req, res){
-  console.log('request at / was made', req.body);
   res.send(mathHistory);
 });
 
