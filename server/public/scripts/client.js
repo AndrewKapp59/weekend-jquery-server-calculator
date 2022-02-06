@@ -25,6 +25,18 @@ function onReady(){
 
 let buttonClicked;
 
+let equation = {}
+
+function equationObject () {
+  label
+  let input = $(this).text();
+  equation['number' ]
+
+  $('#input').val($('#input').val() + input)
+  console.log($('#input').val());
+}
+
+
 // one of these functions gets run to update the buttonClicked value
 // when the corresponding button is pressed by the user
 // function divideClicked () {
@@ -88,8 +100,8 @@ function postEquation() {
         // firstNumber: firstInput,
         // secondNumber: secondInput,
         // operator: buttonClicked,
-        // equals: '=',
-        // answer: '',
+        equals: '=',
+        answer: '',
       }
     }
   }).then(function(response){
