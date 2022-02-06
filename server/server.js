@@ -1,5 +1,5 @@
-const express = require("express");
-const bodyParser = require("body-parser");
+const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express();
 const PORT = 5000;
@@ -8,14 +8,14 @@ const PORT = 5000;
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // points to where the html file is
-app.use(express.static("server/public"));
+app.use(express.static('server/public'));
 
 let mathHistory = [];
 let firstNumber = 0;
 let operator = '';
 let secondNumber = 0;
 
-app.post("/equation", function (req, res) {
+app.post('/equation', function (req, res) {
   let equationString = req.body.equationToAdd.input;
   console.log(equationString);
 
@@ -23,10 +23,10 @@ app.post("/equation", function (req, res) {
   console.log(answer);
 
   // adds the answer, number and operator elements to the object
-  req.body.equationToAdd["firstNumber"] = firstNumber;
-  req.body.equationToAdd["secondNumber"] = secondNumber;
-  req.body.equationToAdd["operator"] = operator;
-  req.body.equationToAdd["answer"] = answer;
+  req.body.equationToAdd['firstNumber'] = firstNumber;
+  req.body.equationToAdd['secondNumber'] = secondNumber;
+  req.body.equationToAdd['operator'] = operator;
+  req.body.equationToAdd['answer'] = answer;
 
   // pushes the updated object with the answer to the mathHistory array
   mathHistory.push(req.body.equationToAdd);
@@ -36,40 +36,40 @@ app.post("/equation", function (req, res) {
 });
 
 // gets the current history and sends it to the client
-app.get("/history", function (req, res) {
+app.get('/history', function (req, res) {
   res.send(mathHistory);
 });
 
-app.get("/answer", function (req, res) {
+app.get('/answer', function (req, res) {
   console.log(req.query.index);
-  let object = mathHistory[req.query.index]
+  let object = mathHistory[req.query.index];
   console.log(object);
   res.send(object);
 });
 
 // empties the mathHistory array
-app.delete("/history", function (req, res) {
+app.delete('/history', function (req, res) {
   mathHistory = [];
   res.send(mathHistory);
 });
 
 function doMathDifferently(str) {
-  let numOne = "";
-  let symbol = "";
-  let numTwo = "";
+  let numOne = '';
+  let symbol = '';
+  let numTwo = '';
 
   for (let i = 0; i < str.length; i++) {
     if (!isNaN(String(str[i]) * 1)) {
       numOne += str[i];
     }
-    if (String(str[i]) === ".") {
+    if (String(str[i]) === '.') {
       numOne += str[i];
     }
     if (
-      String(str[i]) === "/" ||
-      str[i] === "*" ||
-      str[i] === "-" ||
-      str[i] === "+"
+      String(str[i]) === '/' ||
+      str[i] === '*' ||
+      str[i] === '-' ||
+      str[i] === '+'
     ) {
       symbol = str[i];
       break;
@@ -80,7 +80,7 @@ function doMathDifferently(str) {
     if (!isNaN(String(str[i]) * 1)) {
       numTwo += str[i];
     }
-    if (String(str[i]) === ".") {
+    if (String(str[i]) === '.') {
       numTwo += str[i];
     }
   }
@@ -97,17 +97,17 @@ function doMathDifferently(str) {
 }
 
 function doMath(first, operator, second) {
-  if (operator === "/") {
+  if (operator === '/') {
     // console.log('doMath is running');
     let answer = first / second;
     return answer;
-  } else if (operator === "*") {
+  } else if (operator === '*') {
     let answer = first * second;
     return answer;
-  } else if (operator === "-") {
+  } else if (operator === '-') {
     let answer = first - second;
     return answer;
-  } else if (operator === "+") {
+  } else if (operator === '+') {
     let answer = Number(first) + Number(second);
     return answer;
   }
@@ -115,5 +115,5 @@ function doMath(first, operator, second) {
 
 //listens for the port and starts our server
 app.listen(PORT, function () {
-  console.log("listening on port", PORT);
+  console.log('listening on port', PORT);
 });

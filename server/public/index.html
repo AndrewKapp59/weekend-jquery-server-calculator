@@ -1,47 +1,44 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Calculator</title>
-    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/styles.css" />
     <script src="vendors/jquery-3.6.0.min.js"></script>
     <script src="scripts/client.js"></script>
-</head>
-<body>
+  </head>
+  <body>
+    <div class="container">
+      <div id="display">
+        <input placeholder="0" id="input" />
+      </div>
 
-  <div class = 'container'>
-    <div id = 'display'>
-      <input placeholder="0" id = "input">
+      <div class="buttons">
+        <button class="button" id="clear">C</button>
+        <button class="button" id="clearHistory">CH</button>
+        <button class="button" id="backspace">&larr;</button>
+        <button class="button" id="divide">/</button>
+        <button class="button" id="seven">7</button>
+        <button class="button" id="eight">8</button>
+        <button class="button" id="nine">9</button>
+        <button class="button" id="multiply">*</button>
+        <button class="button" id="four">4</button>
+        <button class="button" id="five">5</button>
+        <button class="button" id="six">6</button>
+        <button class="button" id="subtract">-</button>
+        <button class="button" id="one">1</button>
+        <button class="button" id="two">2</button>
+        <button class="button" id="three">3</button>
+        <button class="button" id="add">+</button>
+        <button class="button" id="zero">0</button>
+        <button class="button" id="dot">.</button>
+        <button class="button" id="percentage">%</button>
+        <button class="button" id="equal">=</button>
+      </div>
     </div>
 
-    <div class="buttons">
-      <button class="button" id = 'clear'>C</button>
-      <button class="button" id = 'clearHistory'>CH</button>
-      <button class="button" id = 'backspace'>&larr;</button>
-      <button class="button" id = 'divide'>/</button>
-      <button class="button" id = 'seven'>7</button>
-      <button class="button" id = 'eight'>8</button>
-      <button class="button" id = 'nine'>9</button>
-      <button class="button" id = 'multiply'>*</button>
-      <button class="button" id = 'four'>4</button>
-      <button class="button" id = 'five'>5</button>
-      <button class="button" id = 'six'>6</button>
-      <button class="button" id = 'subtract'>-</button>
-      <button class="button" id = 'one'>1</button>
-      <button class="button" id = 'two'>2</button>
-      <button class="button" id = 'three'>3</button>
-      <button class="button" id = 'add'>+</button>
-      <button class="button" id = 'zero'>0</button>
-      <button class="button" id = 'dot'>.</button>
-      <button class="button" id = 'percentage'>%</button>
-      <button class="button" id = "equal">=</button>
+    <div id="history">
+      <ul id="mathHistory"></ul>
     </div>
-  </div>
-
-
-  <div id = 'history'>
-    <ul id = mathHistory></ul>
-  </div>
-
-</body>
+  </body>
 </html>
