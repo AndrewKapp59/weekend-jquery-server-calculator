@@ -9,6 +9,10 @@ body {
   border-radius: 25px;
 }
 
+.display {
+  border-radius: 25px 25px 0px 0px ;
+}
+
 #input {
   background-color: rgb(225, 240, 247);
   border: 1.5px solid rgb(85, 172, 212);
@@ -24,7 +28,7 @@ body {
   border-bottom: 1px solid #999;
   border-left: 1px solid#999;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  border-radius: 25px;
+  border-radius: 0px 0px 25px 25px;
 }
 
 .button {
