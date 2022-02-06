@@ -12,6 +12,10 @@ app.use(express.static('server/public'));
 
 let mathHistory = []
 
+let firstNumber = 0;
+let operator = '';
+let secondNumber = 0;
+
 app.post('/equation', function(req, res){
   // the data that is send from the client is saved for us in req.body
   // console.log('req.body from the POST is', req.body);
@@ -36,7 +40,10 @@ app.post('/equation', function(req, res){
   console.log(answer);
 
   // adds the answer element to the object
-  req.body.equationToAdd['answer'] = answer
+  req.body.equationToAdd['firstNumber'] = firstNumber;
+  req.body.equationToAdd['secondNumber'] = secondNumber;
+  req.body.equationToAdd['operator'] = operator;
+  req.body.equationToAdd['answer'] = answer;
 
   // // pushes the updated object with the answer to 
   // // the array that records each equation
@@ -75,6 +82,10 @@ function doMathDifferently (str) {
   console.log(numOne);
   console.log(symbol);
   console.log(numTwo);
+
+  firstNumber = numOne;
+  operator = symbol;
+  secondNumber = numTwo;
 
   return doMath(numOne, symbol, numTwo)
 }
