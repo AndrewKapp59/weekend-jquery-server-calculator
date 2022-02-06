@@ -23,6 +23,41 @@ function onReady() {
   $("#seven").on("click", addInput);
   $("#eight").on("click", addInput);
   $("#nine").on("click", addInput);
+  $("#mathHistory").on("click", ".equation", runOldEquation)
+}
+
+let counter = -1;
+
+function runOldEquation () {
+  console.log($(this).data('id'));
+  let index = $(this).data('id');
+  $.ajax({
+    method: "GET",
+    url: "/answer",
+    data: { 
+      index: index,
+      }
+    }
+  ).then(function (response) {
+    console.log("Answer updated", response);
+    // runs renderToDom to append the updated mathHistory array from the server
+    $("#input").val(response.answer);
+  })
+  .catch(function (response) {
+    console.log("runOldEquation not working", response);
+  });
+}
+
+// used in getMathHistory to post mathHistory to the DOM
+function renderToDom(history) {
+  $("#mathHistory").empty();
+  for (let i of history) {
+    counter += 1;
+    $("#mathHistory").append(`
+      <li class = "equation" data-id = ${counter}>${i.firstNumber} ${i.operator} ${i.secondNumber} ${i.equals} ${i.answer}</li>
+    `);
+  }
+  counter = -1; 
 }
 
 // adds the text of a button to the string in the input field
@@ -43,6 +78,7 @@ function backspace() {
   $("#input").val(value.slice(0, value.length - 1));
 }
 
+// converts the current number value in the input to a percentage 
 function percent() {
   let value = $("#input").val();
   let percent = value / 100;
@@ -54,7 +90,6 @@ function percent() {
 function postEquation() {
   let input = $("#input").val();
   $("#input").val("");
-  //using AJAX to send a post request to the server
   $.ajax({
     method: "POST",
     url: "/equation",
@@ -77,7 +112,6 @@ function postEquation() {
 
 // gets the mathHistory array from the server and posts it to the DOM
 function getMathHistory() {
-  // using AJAX to make a get request to the server for the scoreboard array
   $.ajax({
     method: "GET",
     url: "/history",
@@ -92,20 +126,10 @@ function getMathHistory() {
     });
 }
 
-// used in getMathHistory to post mathHistory to the DOM
-function renderToDom(history) {
-  // empties HTML elements before reappending everything
-  $("#mathHistory").empty();
-  for (let i of history) {
-    $("#mathHistory").append(`
-      <li>${i.firstNumber} ${i.operator} ${i.secondNumber} ${i.equals} ${i.answer}</li>
-    `);
-  }
-}
+
 
 // sends a request to the sever to empty the mathHistory array
 function deleteMathHistory() {
-  // using AJAX to make a get request to the server for the scoreboard array
   $.ajax({
     method: "DELETE",
     url: "/history",
@@ -118,4 +142,5 @@ function deleteMathHistory() {
     .catch(function (response) {
       console.log("deleteMathHistory not working", response);
     });
+  counter = -1;  
 }

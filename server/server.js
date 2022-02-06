@@ -22,7 +22,7 @@ app.post("/equation", function (req, res) {
   let answer = doMathDifferently(equationString);
   console.log(answer);
 
-  // adds the answer element to the object
+  // adds the answer, number and operator elements to the object
   req.body.equationToAdd["firstNumber"] = firstNumber;
   req.body.equationToAdd["secondNumber"] = secondNumber;
   req.body.equationToAdd["operator"] = operator;
@@ -38,6 +38,13 @@ app.post("/equation", function (req, res) {
 // gets the current history and sends it to the client
 app.get("/history", function (req, res) {
   res.send(mathHistory);
+});
+
+app.get("/answer", function (req, res) {
+  console.log(req.query.index);
+  let object = mathHistory[req.query.index]
+  console.log(object);
+  res.send(object);
 });
 
 // empties the mathHistory array
