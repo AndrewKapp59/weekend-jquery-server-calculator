@@ -17,10 +17,10 @@ app.post('/equation', function(req, res){
   console.log('req.body from the POST is', req.body);
   
   // sets the elements of the object sent by the client to values
-  let firstNumber = Number(req.body.equationToAdd.firstNumber);
-  let secondNumber = Number(req.body.equationToAdd.secondNumber);
-  let operator = req.body.equationToAdd.operator;
-  let equals = req.body.equationToAdd.equals;
+  // let firstNumber = Number(req.body.equationToAdd.firstNumber);
+  // let secondNumber = Number(req.body.equationToAdd.secondNumber);
+  // let operator = req.body.equationToAdd.operator;
+  // let equals = req.body.equationToAdd.equals;
   
   // enters the values into a function that does the math
   // and returns an answer
@@ -43,6 +43,11 @@ app.post('/equation', function(req, res){
 app.get('/history', function(req, res){
   res.send(mathHistory);
 });
+
+function doMathDifferently () {
+
+  
+}
 
 function doMath (first, operator, second) {
   if (operator === '/') {

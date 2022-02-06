@@ -1,72 +1,51 @@
 $(document).ready(onReady);
 
 function onReady(){
-  $('#divide').on('click', divideClicked)
-  $('#multiply').on('click', multiplyClicked)
-  $('#subtract').on('click', subtractClicked)
-  $('#add').on('click', addClicked)
+  // $('#divide').on('click', divideClicked)
+  // $('#multiply').on('click', multiplyClicked)
+  // $('#subtract').on('click', subtractClicked)
+  // $('#add').on('click', addClicked)
   $('#equal').on('click', postEquation)
   $('#clear').on('click', clearInputs)
-  $('#one').on('click', addNumberInput)
-  // $('#two').on('click', twoClicked)
-  // $('.button').on('click', updateInput1)
+  $('#backspace').on('click', backspace)
+  $('#divide').on('click', addInput)
+  $('#multiply').on('click', addInput)
+  $('#subtract').on('click', addInput)
+  $('#add').on('click', addInput)
+  $('#one').on('click', addInput)
+  $('#two').on('click', addInput)
+  $('#three').on('click', addInput)
+  $('#four').on('click', addInput)
+  $('#five').on('click', addInput)
+  $('#six').on('click', addInput)
+  $('#seven').on('click', addInput)
+  $('#eight').on('click', addInput)
+  $('#nine').on('click', addInput)
 }
 
 let buttonClicked;
 
-inputArray = [];
-
-// function updateInput1 () {
-//   $('input').val(updateInput)
-// }
-
-// function updateInput() {
-//   for ( let i=0; i<inputArray.length; i++ ) {
-//     return inputArray [i]
-//   }
-// }
-
-function addNumberInput () {
-  let number = $(this).text();
-  $('#input').val($('#input').val() + number)
-}
-
-// function addOperator () {
-//   $(this).text();
-// }
-
-
-// function oneClicked () {
-//   inputArray.push(1)
-//   // console.log(inputArray);
-// }
-
-// function twoClicked () {
-//   inputArray.push(2)
-//   // console.log(inputArray);
-// }
-
 // one of these functions gets run to update the buttonClicked value
 // when the corresponding button is pressed by the user
-function divideClicked () {
-  buttonClicked = '/'
-  console.log(buttonClicked);
-}
+// function divideClicked () {
+//   buttonClicked = '/'
+//   console.log(buttonClicked);
+// }
 
-function multiplyClicked () {
-  buttonClicked = '*'
-  console.log(buttonClicked);
-}
+// function multiplyClicked () {
+//   buttonClicked = '*'
+//   console.log(buttonClicked);
+// }
 
-function subtractClicked () {
-  buttonClicked = '-'
-  console.log(buttonClicked);
-}
+// function subtractClicked () {
+//   buttonClicked = '-'
+//   console.log(buttonClicked);
+// }
 
-function addClicked () {
-  buttonClicked = '+'
-  console.log(buttonClicked);
-}
+// function addClicked () {
+//   buttonClicked = '+'
+//   console.log(buttonClicked);
+// }
 
 
 function clearInputs () {
@@ -75,23 +54,42 @@ function clearInputs () {
   // $('#inputTwo').val('');
 }
 
+function addInput () {
+  let input = $(this).text();
+  $('#input').val($('#input').val() + input)
+  console.log($('#input').val());
+}
+
+
+function backspace () {
+  let value = $("#input").val();
+  if (!(parseInt(parseFloat(value)) == 0 && value.length == 1))
+      $("#input").val(value.slice(0, value.length - 1));
+  if (value.length == 1)
+      $("#expression").val("0");
+};
+
+
 function postEquation() {
-  let firstInput = $('#inputOne').val();
-  let secondInput = $('#inputTwo').val();
+  let input = $('#input').val()
+  // let firstInput = $('#inputOne').val();
+  // let secondInput = $('#inputTwo').val();
   // let operatorInput = buttonClicked;
-  $('#inputOne').val('');
-  $('#inputTwo').val('');
+  $('#input').val('');
+  // $('#inputOne').val('');
+  // $('#inputTwo').val('');
   //using AJAX to send a post request to the server
   $.ajax({
     method: 'POST', 
     url: '/equation',
     data: {
       equationToAdd: {
-        firstNumber: firstInput,
-        secondNumber: secondInput,
-        operator: buttonClicked,
-        equals: '=',
-        answer: '',
+        input: input,
+        // firstNumber: firstInput,
+        // secondNumber: secondInput,
+        // operator: buttonClicked,
+        // equals: '=',
+        // answer: '',
       }
     }
   }).then(function(response){
