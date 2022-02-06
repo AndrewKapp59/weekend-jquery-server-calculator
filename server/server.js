@@ -58,6 +58,11 @@ app.get('/history', function(req, res){
   res.send(mathHistory);
 });
 
+app.delete('/history', function(req, res){
+  mathHistory = [];
+  res.send(mathHistory);
+});
+
 function doMathDifferently (str) {
   let numOne = '';
   let symbol = '';
@@ -65,6 +70,9 @@ function doMathDifferently (str) {
 
   for (let i=0; i<str.length; i++) {
     if (!isNaN(String(str[i]) * 1)) {
+      numOne += str[i];
+    }
+    if (String(str[i]) === '.' ) {
       numOne += str[i];
     }
     if (String(str[i]) === '/' || str[i] === '*' || str[i] === '-' || str[i] === '+'){
@@ -75,6 +83,9 @@ function doMathDifferently (str) {
 
   for (let i=numOne.length + 1; i<str.length; i++) {
     if (!isNaN(String(str[i]) * 1)) {
+      numTwo += str[i];
+    }
+    if (String(str[i]) === '.' ) {
       numTwo += str[i];
     }
   }
@@ -111,16 +122,9 @@ function doMath (first, operator, second) {
   }
 }
 
+
+
 //listens for the port and starts our server
 app.listen(PORT, function(){
   console.log('listening on port', PORT);
 });
-
-
-function onEmployeeDelete() {
-  console.log($(this).data('id'));
-  let employeeToDeleteIndex = $(this).data('id');
-  employees.splice(employeeToDeleteIndex, 1);
-  renderEmployees();
-  renderTotalMonthlySalary();
-}

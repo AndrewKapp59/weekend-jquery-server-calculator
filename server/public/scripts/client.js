@@ -1,17 +1,19 @@
 $(document).ready(onReady);
 
 function onReady(){
-  // $('#divide').on('click', divideClicked)
-  // $('#multiply').on('click', multiplyClicked)
-  // $('#subtract').on('click', subtractClicked)
-  // $('#add').on('click', addClicked)
   $('#equal').on('click', postEquation)
   $('#clear').on('click', clearInputs)
+  $('#clearHistory').on('click', deleteMathHistory)
   $('#backspace').on('click', backspace)
+  $('#percentage').on('click', percent)
   $('#divide').on('click', addInput)
   $('#multiply').on('click', addInput)
   $('#subtract').on('click', addInput)
   $('#add').on('click', addInput)
+  $('#dot').on('click', addInput)
+  $('#leftParen').on('click', addInput)
+  $('#rightParen').on('click', addInput)
+  $('#zero').on('click', addInput)
   $('#one').on('click', addInput)
   $('#two').on('click', addInput)
   $('#three').on('click', addInput)
@@ -23,73 +25,35 @@ function onReady(){
   $('#nine').on('click', addInput)
 }
 
-let buttonClicked;
-
-let equation = {}
-
-function equationObject () {
-  label
-  let input = $(this).text();
-  equation['number' ]
-
-  $('#input').val($('#input').val() + input)
-  console.log($('#input').val());
-}
-
-
-// one of these functions gets run to update the buttonClicked value
-// when the corresponding button is pressed by the user
-// function divideClicked () {
-//   buttonClicked = '/'
-//   console.log(buttonClicked);
-// }
-
-// function multiplyClicked () {
-//   buttonClicked = '*'
-//   console.log(buttonClicked);
-// }
-
-// function subtractClicked () {
-//   buttonClicked = '-'
-//   console.log(buttonClicked);
-// }
-
-// function addClicked () {
-//   buttonClicked = '+'
-//   console.log(buttonClicked);
-// }
-
-
-function clearInputs () {
-  $('#input').val('');
-  // $('#inputOne').val('');
-  // $('#inputTwo').val('');
-}
-
+// adds the text of a button to the string in the input field
 function addInput () {
   let input = $(this).text();
   $('#input').val($('#input').val() + input)
   console.log($('#input').val());
 }
 
+// empties the input field
+function clearInputs () {
+  $('#input').val('');
+}
 
+// removes the value at the end of the string
 function backspace () {
   let value = $("#input").val();
-  if (!(parseInt(parseFloat(value)) == 0 && value.length == 1))
-      $("#input").val(value.slice(0, value.length - 1));
-  if (value.length == 1)
-      $("#expression").val("0");
+  $("#input").val(value.slice(0, value.length - 1));
 };
 
+function percent () {
+  let value = $("#input").val();
+  let percent = value / 100;
+  $('#input').val(percent)
+  console.log($('#input').val());
+}
 
+// takes the equation string and posts it to the server inside an object
 function postEquation() {
   let input = $('#input').val()
-  // let firstInput = $('#inputOne').val();
-  // let secondInput = $('#inputTwo').val();
-  // let operatorInput = buttonClicked;
   $('#input').val('');
-  // $('#inputOne').val('');
-  // $('#inputTwo').val('');
   //using AJAX to send a post request to the server
   $.ajax({
     method: 'POST', 
@@ -97,9 +61,6 @@ function postEquation() {
     data: {
       equationToAdd: {
         input: input,
-        // firstNumber: firstInput,
-        // secondNumber: secondInput,
-        // operator: buttonClicked,
         equals: '=',
         answer: '',
       }
@@ -112,6 +73,7 @@ function postEquation() {
   })
 }
 
+// gets the mathHistory array from the server and posts it to the DOM
 function getMathHistory () {
   // using AJAX to make a get request to the server for the scoreboard array
   $.ajax({
@@ -126,6 +88,7 @@ function getMathHistory () {
   });
 }
 
+// used in getMathHistory to post mathHistory to the DOM
 function renderToDom(history) {
   // empties HTML elements before reappending everything
   $('#mathHistory').empty()
@@ -135,6 +98,23 @@ function renderToDom(history) {
     `)
   }
 }
+
+// sends a request to the sever to empty the mathHistory array
+function deleteMathHistory () {
+  // using AJAX to make a get request to the server for the scoreboard array
+  $.ajax({
+    method: 'DELETE',
+    url: '/history'
+  }).then(function(response){
+    console.log('History deleted', response);
+    // runs renderToDom to append the updated mathHistory array from the server
+    renderToDom(response);
+  }).catch(function(response){
+    console.log('deleteMathHistory not working', response);
+  });
+}
+
+
 
 
 
