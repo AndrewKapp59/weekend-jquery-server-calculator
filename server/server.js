@@ -97,6 +97,6 @@ function expr (expr) {
 
 
 //listens for the port and starts our server
-app.listen(PORT, function () {
-  console.log('listening on port', PORT);
+app.listen(port, function () {
+  console.log('listening on port', port);
 });
