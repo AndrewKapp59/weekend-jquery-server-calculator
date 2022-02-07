@@ -11,12 +11,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('server/public'));
 
 let mathHistory = [];
-let firstNumber = 0;
-let operator = '';
-let secondNumber = 0;
 
 // sends and updated object to the mathHistory array
-app.post('/equation', function (req, res) {
+app.post('/equation', (req, res) => {
   let equationString = req.body.equationToAdd.input;
   console.log(equationString);
 
@@ -34,12 +31,12 @@ app.post('/equation', function (req, res) {
 });
 
 // gets the current history and sends it to the client
-app.get('/history', function (req, res) {
+app.get('/history', (req, res) => {
   res.send(mathHistory);
 });
 
 // sends an specified object from mathHistory to the client
-app.get('/answer', function (req, res) {
+app.get('/answer', (req, res) => {
   console.log(req.query.index);
   let object = mathHistory[req.query.index];
   console.log(object);
@@ -47,7 +44,7 @@ app.get('/answer', function (req, res) {
 });
 
 // empties the mathHistory array
-app.delete('/history', function (req, res) {
+app.delete('/history', (req, res) => {
   mathHistory = [];
   res.send(mathHistory);
 });

@@ -1,6 +1,7 @@
 $(document).ready(onReady);
 
 function onReady() {
+  getMathHistory()
   $('#equal').on('click', postEquation);
   $('#clear').on('click', clearInputs);
   $('#clearHistory').on('click', deleteMathHistory);
@@ -84,7 +85,7 @@ function postEquation() {
       getMathHistory(); // to refresh the DOM with the new item
     })
     .catch(function (response) {
-      console.log('UGHHHH Equation not added');
+      console.error('UGHHHH Equation not added');
     });
 }
 
@@ -98,6 +99,7 @@ function getMathHistory() {
       console.log('History updated', response);
       // runs renderToDom to append the updated mathHistory array from the server
       renderToDom(response);
+      $('#input').val(response[response.length-1].answer); 
     })
     .catch(function (response) {
       console.log('getMathHistory not working', response);
@@ -119,6 +121,7 @@ function deleteMathHistory() {
       console.log('deleteMathHistory not working', response);
     });
   indexCounter = -1;
+  $('#input').val(''); 
 }
 
 let indexCounter = -1;
