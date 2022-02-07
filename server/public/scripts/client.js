@@ -32,7 +32,7 @@ function renderToDom(history) {
   for (let i of history) {
     indexCounter += 1;
     $('#mathHistory').append(`
-      <li class = "equation" data-id = ${indexCounter}>${i.firstNumber} ${i.operator} ${i.secondNumber} ${i.equals} ${i.answer}</li>
+      <li class = "equation" data-id = ${indexCounter}>${i.input} ${i.equals} ${i.answer}</li>
     `);
   }
   indexCounter = -1;
