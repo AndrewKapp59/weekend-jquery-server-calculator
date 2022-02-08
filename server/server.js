@@ -8,7 +8,7 @@ const port = process.env.port || 4000;
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // points to where the html file is
-app.use(express.static('server/public'));
+app.use(express.static('./server/public'));
 
 let mathHistory = [];
 
