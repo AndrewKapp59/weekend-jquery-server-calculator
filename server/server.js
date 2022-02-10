@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
-const port = process.env.port || 4000;
+const PORT = process.env.PORT || 4000;
 
 //body parser
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -97,6 +97,6 @@ function expr (expr) {
 
 
 //listens for the port and starts our server
-app.listen(port, function () {
-  console.log('listening on port', port);
+app.listen(PORT, function () {
+  console.log('listening on port', PORT);
 });
