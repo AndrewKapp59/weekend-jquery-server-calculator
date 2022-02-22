@@ -25,6 +25,7 @@ To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](https:
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/en/)
+- JQuery
 
 ## Installation
 
