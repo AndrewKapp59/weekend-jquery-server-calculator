@@ -20,6 +20,7 @@ To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](https:
 
 ## Screen Shot
 
+![Screen Shot 2022-02-22 at 12 29 18 PM](https://user-images.githubusercontent.com/88990985/155197887-e21d0a7f-826e-48c1-87b1-9acbe519b662.png)
 
 ### Prerequisites
 
