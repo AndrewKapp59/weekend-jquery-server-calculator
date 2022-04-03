@@ -2,7 +2,7 @@
 
 ## Description
 
-_Duration: 2 Days_
+_Duration: 2 Day Sprint_
 
 This is my first calculator app! It does basic math and records a history of the equations you have entered and their answers in an array stored in a local server. The user interface is similar to that of a physical calculator in that I you have to press (or in this case click) each button to get a result in the input field. The buttons I have included are as follows.
 
