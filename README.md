@@ -16,7 +16,7 @@ This is my first calculator app! It does basic math and records a history of the
 - Last there's the equals button, which runs the equation and replaces it in the input field with the answer. 
 
 
-To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](https://secure-sands-49830.herokuapp.com/)
+To see the fully functional site, follow this link: [Link](https://secure-sands-49830.herokuapp.com/)
 
 ## Screen Shot
 
@@ -24,22 +24,32 @@ To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](https:
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/en/)
-- JQuery
+Internet Browser
 
 ## Installation
 
-
-1. Clone the app and open it up in the editor of your choice and run an `npm install`
-2. Pick a port you want to use and run `npm start` in your terminal.
-
+Not required. 
 
 ## Usage
 
-- This calculator can be used to do basic math. Does NOT follow PEMDAS though. So longer equations will likely not produce an accurate answer. 
+- This calculator can be used to do basic math. It does NOT follow PEMDAS though. So longer equations will likely not produce an accurate answer. 
+
+## Built With
+
+- Javascript
+- jQuery
+- Node.js
+- Express
+- HTML
+- CSS
 
 ## Acknowledgement
-Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped me to make this application a reality. (Thank your people)
+
+Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped me to make this application a reality.
+
+Thanks to the Adam's Cohort for thier continued support. 
 
 ## Support
 If you have suggestions or issues, please email me at [dkapp59@gmail.com.com]
+
+Visit my [LinkedIn](https://www.linkedin.com/in/andrew-kapp-14448371/)
